@@ -1,0 +1,410 @@
+/* 전역 변수 설정 (라이트 모드 / 다크 모드용) */
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-main: black;
+    --text-sub: #718096;
+    --accent-color: #4a5568;
+    --tag-bg: #edf2f7;
+    --border-color: #e2e8f0;
+}
+
+/* 다크 모드 색상 스타일 */
+body.dark-mode {
+    --bg-color: #1a202c;
+    --card-bg: #2d3748;
+    --text-main: #f7fafc;
+    --text-sub: #a0aec0;
+    --tag-bg: #4a5568;
+    --border-color: #4a5568;
+}
+
+/* 전체 기본 배치 */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 메인 카드 상자 (원본 크기) */
+.card-container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 380px;
+    padding: 30px 24px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-container:hover {
+    transform: translateY(-4px);
+}
+
+/* 다크모드 버튼 */
+.theme-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+/* 프로필 사진 & 이름 */
+.profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #667eea;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.tagline {
+    color: var(--text-sub);
+    font-size: 0.9rem;
+    margin-top: 4px;
+    margin-bottom: 24px;
+}
+
+/* 대학교 로고 크기 및 정렬 설정 */
+.tagline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    /* 로고와 글자 사이 간격 */
+}
+
+.univ-logo {
+    width: 18px;
+    /* 로고 가로 크기 */
+    height: 18px;
+    /* 로고 세로 크기 */
+    object-fit: contain;
+}
+
+/* 본문 섹션 */
+.profile-body h2 {
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: var(--text-sub);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.profile-body p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 태그 그룹 */
+.tag-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+.tag {
+    background-color: var(--tag-bg);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+/* 소셜 링크 버튼 (GitHub & Discord) */
+.link-group {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+
+}
+
+.link-btn {
+    flex: 1;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    transition: opacity 0.2s ease;
+}
+
+.github-btn {
+    background-color: #24292e;
+}
+
+.discord-btn {
+    background-color: #5865f2;
+}
+
+.link-btn:hover {
+    opacity: 0.85;
+}
+
+/* 하트 버튼 */
+.profile-footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.like-btn {
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.like-btn:active {
+    transform: scale(0.95);
+}
+
+/* 프로젝트 카드 스타일 */
+/* 프로젝트 카드 호버 반응감 강화 */
+.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.project-card {
+    background-color: var(--tag-bg);
+    padding: 16px;
+    border-radius: 14px;
+    text-align: left;
+    margin-top: 10px;
+    border: 1.5px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.project-card-link:hover .project-card {
+    transform: translateY(-5px) scale(1.02);
+    border-color: #667eea;
+    box-shadow: 0 12px 20px rgba(102, 126, 234, 0.15);
+}
+
+.project-title {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.project-tech {
+    font-size: 0.75rem;
+    color: #667eea;
+    font-weight: 600;
+    margin: 4px 0 6px 0;
+}
+
+.project-desc {
+    font-size: 0.85rem !important;
+    color: var(--text-sub);
+    margin: 0 !important;
+}
+
+/* 제목과 View Code 배지 양끝 정렬 */
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+/* View Code 배지 기본 디자인 */
+.view-code-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #667eea;
+    background-color: rgba(102, 126, 234, 0.1);
+    padding: 3px 8px;
+    border-radius: 12px;
+    border: 1px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+/* 카드를 호버했을 때 View Code 배지가 포인트 색상으로 반짝이는 효과 */
+.project-card-link:hover .view-code-badge {
+    background-color: #667eea;
+    color: #ffffff;
+}
+
+
+
+
+
+/* 스킬 태그 및 툴팁 스타일 */
+.skill-tag {
+    position: relative;
+    border: 1px solid var(--border-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 5px 7px;
+    font-size: 0.75rem;
+
+
+    display: inline-flex;
+    /* 글자와 i 뱃지를 가로 한 줄로 고정하는 설정 */
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    /* 모바일 터치 시 파란 박스 잔상 제거 */
+
+}
+
+
+/* PC 마우스 호버 & 모바일 터치(focus) 시 스타일 */
+.skill-tag:hover,
+.skill-tag:focus {
+    background-color: #667eea;
+    color: white;
+    border-color: #667eea;
+    outline: none;
+}
+
+
+/* 기본 툴팁 코드 */
+.skill-tag::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background-color: #2d3748;
+    color: #ffffff;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+
+    /* 가로/세로 균형 및 자동 줄바꿈 */
+    width: max-content;
+    max-width: 160px;
+    white-space: normal;
+    word-break: keep-all;
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+
+/* PC 마우스 올렸을 때 OR 모바일에서 터치했을 때 툴팁 등장 */
+.skill-tag:hover::after,
+.skill-tag:focus::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/*(i) 미니 뱃지 */
+.info-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    color: var(--text-sub);
+    font-size: 0.65rem;
+    font-weight: bold;
+    font-family: Georgia, serif;
+    /* i 글꼴을 예쁘게 떨어뜨리는 폰트 */
+    font-style: italic;
+    /* 기울임꼴로 '정보' 아이콘 느낌 강조 */
+    margin-left: 4px;
+    transition: all 0.2s ease;
+}
+
+/* 태그 호버 & 터치 시 뱃지 색상 반응 */
+.skill-tag:hover .info-badge,
+.skill-tag:focus .info-badge {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+
+
+/* 학습 내용 구역 스타일 */
+.learned-section {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-color, #e2e8f0);
+    /* 구분선 */
+    text-align: left;
+    /* 목록 왼쪽 정렬 */
+}
+
+.learned-section h4 {
+    font-size: 0.85rem;
+    color: #4a5568;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+/* 다크 모드 색상 대응 */
+body.dark-mode .learned-section h4 {
+    color: #cbd5e0;
+}
+
+.learned-list {
+    list-style-type: '✔ ';
+    /* 체크 아이콘 불릿 기호 */
+    padding-left: 18px;
+    margin: 0;
+}
+
+.learned-list li {
+    font-size: 0.8rem;
+    color: #718096;
+    line-height: 1.6;
+}
+
+body.dark-mode .learned-list li {
+    color: #a0aec0;
+}
+
+
+
+
+/* 모바일 가로 스크롤 차단 */
+html,
+body {
+    overflow-x: hidden;
+}

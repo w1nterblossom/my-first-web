@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 프로필 카드</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 모바일에서 화면 크기 인식 -->
+</head>
+
+<body>
+
+    <!-- 전체 카드를 감싸는 상자 -->
+    <div class="card-container">
+
+        <!-- 다크모드 토글 버튼 -->
+        <button id="theme-toggle-btn" class="theme-btn">🌙 다크 모드</button>
+
+        <!-- 프로필 헤더 (사진 및 이름) -->
+        <div class="profile-header">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhxyiDRCpdJ_TWqYgGjSgKMWmKvoUcM2YanXpvZDr1Pg&s=10"
+                alt="프로필 사진" class="profile-img">
+            <h1>박서영</h1>
+            <p class="tagline"> <img
+                    src="https://i.namu.wiki/i/tY-s9t0TPvlQSWjMT6Y4mqj1cBc5FKeDVvNKG5QNSwZ_UuXAnbyAvlmJ6KXbm4H1BwoyXzkLQP0vBJnqrB9ixA.svg"
+                    alt="성신여대 로고" class="univ-logo">
+                성신여대 컴퓨터공학과 재학</p>
+        </div>
+
+        <!-- 소개글 구역 -->
+        <div class="profile-body">
+            <h2>ABOUT ME</h2>
+            <p> "예쁜 화면을 만들며, 아이디어를 현실로 구현해내기를 좋아합니다." </p>
+
+
+            <!-- SKILLS 섹션 -->
+            <h2>SKILLS</h2>
+            <div class="tag-group">
+                <span class="tag skill-tag" data-tooltip="시맨틱 태그를 활용한 웹 구조 설계">HTML5 <small
+                        class="info-badge">i</small></span>
+                <span class="tag skill-tag" data-tooltip="반응형 레이아웃 및 다크모드 스타일링">CSS3<small
+                        class="info-badge">i</small></span>
+                <span class="tag skill-tag" data-tooltip="DOM 요소 선택 및 클릭 이벤트 처리">JavaScript <small
+                        class="info-badge">i</small></span>
+                <span class="tag skill-tag" data-tooltip="Git 기본 개념 이해 및 GitHub 저장소 활용">GitHub <small
+                        class="info-badge">i</small></span>
+
+            </div>
+        </div>
+
+        <!-- PROJECTS 섹션 -->
+        <h2>PROJECTS</h2>
+        <a href=" https://github.com/w1nterblossom" target="_blank" class="project-card-link">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">💻 Personal Profile Page</div>
+                    <div><span class="view-code-badge">View Code ↗</span></div>
+                </div>
+                <div class="project-tech">HTML / CSS/ JavaScript</div>
+                <br>
+                <p class="project-desc">직접 디자인하고 구현한 개인 프로필 페이지</p>
+
+                <div class="learned-section">
+                    <h4>What I learned</h4>
+                    <ul class="learned-list">
+                        <li>HTML 구조 설계</li>
+                        <li>CSS를 활용한 UI 디자인</li>
+                        <li>JavaScript로 인터랙션 구현</li>
+                        <li>GitHub를 이용한 코드 관리</li>
+                    </ul>
+                </div>
+
+            </div>
+        </a>
+
+        <h2>INTERESTS</h2>
+        <div class="tag-group">
+            <span class="tag">🎨 UI / UX</span>
+            <span class="tag">💻 Web & App</span>
+            <span class="tag">🤝 Teamwork</span>
+
+        </div>
+
+        <h2>CONTACT</h2>
+        <div class="link-group">
+            <a href="https://discord.gg/vBbEeBJ2" target="_blank" class="link-btn discord-btn">💬Discord</a>
+            <a href="https://github.com/w1nterblossom" target="_blank" class="link-btn github-btn">🐙GitHub</a>
+        </div>
+
+
+        <!-- 하트 인터랙션 구역 -->
+        <div class="profile-footer">
+            <button id="like-btn" class="like-btn">❤️ 응원하기 <span id="like-count">0</span></button>
+        </div>
+
+    </div>
+
+    <script>
+        // 다크 모드 토글 기능
+        const themeBtn = document.getElementById('theme-toggle-btn');
+
+        themeBtn.addEventListener('click', function () {
+            document.body.classList.toggle('dark-mode');
+
+            // 버튼 텍스트 변경
+            if (document.body.classList.contains('dark-mode')) {
+                themeBtn.textContent = '☀️ 라이트 모드';
+            } else {
+                themeBtn.textContent = '🌙 다크 모드';
+            }
+        });
+
+
+        // 모바일 터치 툴팁 호환성 강화
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.setAttribute('tabindex', '0');
+        });
+
+
+        // 스킬 태그 클릭/터치 이벤트 처리
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.addEventListener('click', (e) => {
+                // 마우스(PC) 환경일 때는 클릭 동작을 무시하고 리턴
+                if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+                // 모바일(터치) 기기일 때만 기존 툴팁 토글 동작 실행
+                e.stopPropagation();
+                tag.classList.toggle('active');
+            });
+        });
+
+        // 응원하기 하트 카운터 기능
+        const likeBtn = document.getElementById('like-btn');
+        const likeCountSpan = document.getElementById('like-count');
+        let count = 0;
+
+        likeBtn.addEventListener('click', function () {
+            count += 1;
+            likeCountSpan.textContent = count;
+        });
+    </script>
+</body>
+
+</html>
